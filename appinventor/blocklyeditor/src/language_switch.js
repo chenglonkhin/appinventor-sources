@@ -27,19 +27,21 @@ Blockly.language_switch = {
     if (Blockly.mainWorkspace) {
       var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
       Blockly.mainWorkspace.clear();
+      console.log("Line 29: Blockly.mainWorkspace.clear();");
     }
     switch (language) {
       case 'ko_KR':
         Blockly.Msg.ko_kr.switch_language_to_korean.init();
         break;
       case 'es_ES':
-          Blockly.Msg.es_es.switch_language_to_spanish_es.init();
-          break;
+        Blockly.Msg.es_es.switch_language_to_spanish_es.init();
+        break;
       case 'zh_TW':
         Blockly.Msg.zh_tw.switch_language_to_chinese_tw.init();
         break;
       case 'zh_CN':
         Blockly.Msg.zh_cn.switch_language_to_chinese_cn.init();
+        console.log("This option has been chosen: " + language);
         break;
       case 'fr_FR':
         Blockly.Msg.fr_fr.switch_language_to_french.init();
@@ -65,11 +67,14 @@ Blockly.language_switch = {
     }
     if (Blockly.mainWorkspace) {
       Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
+      console.log("Line 69: Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);");
     }
   }
 };
 
 //switch language before blocks are generated
+console.log("Cleared Workspace");
 var language = window.parent.__gwt_Locale;
-// console.log("Language = " + language);
+console.log("Language = " + language);
 Blockly.language_switch.switchLanguage(language);
+
