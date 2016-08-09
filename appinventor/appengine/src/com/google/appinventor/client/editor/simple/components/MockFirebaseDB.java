@@ -138,7 +138,7 @@ public class MockFirebaseDB extends MockNonVisibleComponent {
     if (!warningGiven) {
       warningGiven = true;
       Ode.getInstance().warningDialog(MESSAGES.warningDialogTitle(),
-        MESSAGES.firebaseExperimentalWarning(), MESSAGES.okButton());
+        MESSAGES.firebaseURLWarning(), MESSAGES.okButton());
     }
   }
 
@@ -192,6 +192,10 @@ public class MockFirebaseDB extends MockNonVisibleComponent {
         tokenType |= EditableProperty.TYPE_NONPERSISTED;
         tokenType |= EditableProperty.TYPE_DOYAIL;
       } else {
+        if (!newValue.toLowerCase().contains("firebaseio.com")) {
+          Ode.getInstance().warningDialog(MESSAGES.warningDialogTitle(),
+          MESSAGES.firebaseURLWarning(), MESSAGES.okButton());
+        }
         tokenType &= ~EditableProperty.TYPE_NONPERSISTED;
         persistToken = true;
       }

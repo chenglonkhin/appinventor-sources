@@ -6246,6 +6246,13 @@ public interface OdeMessages extends Messages {
   @Description("")
   String firebaseExperimentalWarning();
 
+
+  @DefaultMessage("All Firebase hosted URL's end with \"firebaseio.com\". " +
+    "The Firebase URL you provided doesn't seem to end in \"firebaseio.com\". " +
+    "This URL provided could be potientially wrong.")
+  @Description("")
+  String firebaseURLWarning();
+
   @DefaultMessage("You are in Read Only Mode")
   @Description("")
   String readOnlyMode();
