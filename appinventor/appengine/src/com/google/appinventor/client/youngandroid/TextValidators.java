@@ -133,6 +133,11 @@ public final class TextValidators {
    */
   public static boolean isValidCharFilename(String filename){
     return !filename.contains("'") && filename.equals(URL.encodePathSegment(filename));
+    //returns the logic of the file name doesn't contain any "'" (true if there is not "'" in Filename)
+    //and whether if filename.equals(URL.encodePathSegment)  )
+    //encodePathSegment takes away all invalid characters in the filename - so if filename equals 
+    //encodePathSegment, that means that there were no invalid characters, so it will evaulate true
+    //evaluates true if filename doesnt have single quotes and if filename doesnt have any invalid characters
   }
   
   /**
@@ -148,6 +153,9 @@ public final class TextValidators {
    */
   public static boolean isValidLengthFilename(String filename){
     return !(filename.length() > MAX_FILENAME_SIZE || filename.length() < MIN_FILENAME_SIZE);
+    //returns the logic of the opposite of (if filename.length is larger than MAX_FILENAME_SIZE)
+    //will return False if filename is larger than MAX_FILENAME_SIZE (100) or if its smaller than MIN_FILENAME_SIZE (1)
+    //will return True if filename is smaller than MAX_FILENAME_SIZE (100) or if its larger than MIN_FILENAME_SIZE (1)
   }
 
   /**

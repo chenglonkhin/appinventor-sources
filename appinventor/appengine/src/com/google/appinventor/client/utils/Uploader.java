@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.FormHandler;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.FormSubmitCompleteEvent;
 import com.google.gwt.user.client.ui.FormSubmitEvent;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
@@ -65,6 +66,7 @@ public final class Uploader {
         // we can get the result text here (see the FormPanel documentation for
         // further explanation).
         String results = event.getResults();
+        Window.confirm("Results: " + results);
         // If the submit completely failed, results will be null.
         if (results == null) {
           callback.onFailure(new RuntimeException("Upload error"));
@@ -72,6 +74,10 @@ public final class Uploader {
           // results contains the UploadResponse value as a String. It was written on the server
           // side in the doPost method in ode/server/UploadServlet.java.
           UploadResponse uploadResponse = UploadResponse.extractUploadResponse(results);
+          Window.confirm("getStatus: " + uploadResponse.getStatus());
+          Window.confirm("getCount: " + uploadResponse.getCount());
+          Window.confirm("getInfo: " + uploadResponse.getInfo());
+
           if (uploadResponse != null) {
             callback.onSuccess(uploadResponse);
           } else {
@@ -97,5 +103,6 @@ public final class Uploader {
     form.setWidget(upload);
     form.setAction(uploadUrl);
     form.submit();
+    Window.confirm("upload called!");
   }
 }
